@@ -7,4 +7,8 @@ public class Mulop {
     public Mulop(String content){
         this.content = content;
     }
+    
+    public String toString(){
+        return this.content;
+    }
 }

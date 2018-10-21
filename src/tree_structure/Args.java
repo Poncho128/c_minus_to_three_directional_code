@@ -13,4 +13,11 @@ public class Args {
         this.arg_list = arg_list;
     }
     
+    public String toString(){
+        if(this.arg_list != null){
+            this.content = arg_list.toString();
+        }
+        
+        return this.content;
+    }
 }

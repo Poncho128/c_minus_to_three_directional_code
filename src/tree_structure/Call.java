@@ -17,4 +17,12 @@ public class Call {
         this.args = args;
     }
     
+    @Override
+    public String toString(){
+        
+        this.content = this.id.toString()+"("+this.args.toString()+")";
+            
+        return this.content;
+    }
+    
 }

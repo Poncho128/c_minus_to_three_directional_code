@@ -23,5 +23,19 @@ public class Term {
         this.mulops.add(mulop);
         this.factors.add(factor);
     }
+    
+    @Override
+    public String toString(){
+        if(this.mulops.isEmpty() && this.factors.isEmpty()){
+            this.content = this.factor.toString();
+        }else{
+            this.content = this.factor.toString();
+            
+            for(int i=0; i<this.mulops.size(); i++){
+                this.content += mulops.get(i).toString() + factors.get(i).toString();
+            }
+        }
+        return this.content;
+    }
 
 }

@@ -17,4 +17,14 @@ class Var {
     public void setExp(Exp expression){
         this.expression = expression;
     }
+    
+    @Override
+    public String toString(){
+        if(this.expression == null){
+            this.content = this.id.toString();
+        }else{
+            this.content = this.id.toString() + "["+ this.expression.toString() +"]";
+        }
+        return this.content;
+    }
 }

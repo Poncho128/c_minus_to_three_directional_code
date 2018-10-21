@@ -16,4 +16,14 @@ public class Arg_list {
         this.expressions.add(expression);
     }
     
+    public String toString(){
+        if(!this.expressions.isEmpty()){
+            for(int i=0; i<=expressions.size(); i++){
+                this.content += expressions.get(i).toString();
+            }
+        }
+        
+        return this.content;
+    }
+    
 }

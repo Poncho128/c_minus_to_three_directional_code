@@ -8,4 +8,8 @@ public class Addop {
         this.content = content;
     }
     
+    public String toString(){
+        return this.content;
+    }
+    
 }

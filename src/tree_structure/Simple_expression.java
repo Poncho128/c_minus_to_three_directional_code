@@ -22,4 +22,14 @@ class Simple_expression {
     public void setAdditiveExpression2(Additive_expression additive_expression_2){
         this.additive_expression_2 = additive_expression_2;
     }
+    
+    public String toString(){
+        if(additive_expression_2 == null){
+            this.content = additive_expression_1.toString();
+        }else{
+            this.content = additive_expression_1.toString() + " " + relop.toString() + " " + this.additive_expression_2.toString();
+        }
+        
+        return this.content;
+    }
 }

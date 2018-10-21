@@ -24,4 +24,18 @@ class Additive_expression {
         this.terms.add(term);
     }
     
+    @Override
+    public String toString(){
+        if(this.addops.isEmpty() && this.terms.isEmpty()){
+            this.content = this.term.toString();
+        }else{
+            this.content = this.term.toString();
+            
+            for(int i=0; i<this.addops.size(); i++){
+                this.content += addops.get(i).toString() + terms.get(i).toString();
+            }
+        }
+        return this.content;
+    }
+    
 }

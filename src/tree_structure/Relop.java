@@ -7,4 +7,8 @@ class Relop {
     public Relop(String content){ 
         this.content = content;
     }
+    
+    public String toString(){
+        return this.content;
+    }
 }

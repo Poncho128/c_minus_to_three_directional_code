@@ -22,4 +22,16 @@ public class Exp {
         public void setSimpleExpression(Simple_expression simple_expression){
             this.simple_expression = simple_expression;
         }
+        
+        @Override
+        public String toString(){
+            
+            if(this.var==null && this.expression == null){
+                this.content = this.simple_expression.toString();
+            }else{
+                this.content = this.var.toString() + " = " + this.expression.toString();
+            }
+            
+            return this.content;
+        }
 }
