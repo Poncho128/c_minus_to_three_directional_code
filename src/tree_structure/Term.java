@@ -1,8 +1,11 @@
 package tree_structure;
 
 import java.util.ArrayList;
+import static tree_structure.Main.counter;
 
 public class Term {
+    
+    private int operationCount = 0;
     
     private ArrayList<Mulop> mulops;
     private ArrayList<Factor> factors;
@@ -24,15 +27,26 @@ public class Term {
         this.factors.add(factor);
     }
     
+    public int getOperationCount(){
+        return this.operationCount;
+    }
+    
     @Override
     public String toString(){
         if(this.mulops.isEmpty() && this.factors.isEmpty()){
-            this.content = this.factor.toString();
+            this.content = "t"+counter + " = " + this.factor.toString() + "\n";
+            operationCount = counter;
+            counter++;
         }else{
-            this.content = this.factor.toString();
             
             for(int i=0; i<this.mulops.size(); i++){
-                this.content += mulops.get(i).toString() + factors.get(i).toString();
+                if( i == 0){
+                    this.content += "t"+counter + " = " + this.factor.toString() + mulops.get(i).toString() + factors.get(i).toString() + "\n";
+                }else{
+                    this.content += "t"+counter + " = " + "t" + (counter-1) + mulops.get(i).toString() + factors.get(i).toString() + "\n";
+                }
+                operationCount = counter;
+                counter++;
             }
         }
         return this.content;

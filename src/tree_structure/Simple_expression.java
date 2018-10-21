@@ -1,5 +1,7 @@
 package tree_structure;
 
+import static tree_structure.Main.counter;
+
 class Simple_expression {
     
     private Additive_expression additive_expression_1 = null;
@@ -25,10 +27,12 @@ class Simple_expression {
     
     public String toString(){
         if(additive_expression_2 == null){
-            this.content = additive_expression_1.toString();
+            this.content = "t" + counter + " = " + additive_expression_1.toString() + "\n";
         }else{
-            this.content = additive_expression_1.toString() + " " + relop.toString() + " " + this.additive_expression_2.toString();
+            this.content = "t" + counter + " = " + additive_expression_1.toString() + " " + relop.toString() + " " + this.additive_expression_2.toString() + "\n";
         }
+        
+        counter++;
         
         return this.content;
     }
