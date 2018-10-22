@@ -60,9 +60,15 @@ public class Main {
         Id id = new Id("popo");
         Var var = new Var("");
         var.setId(id);
-        var.setExp(expression);
+        //var.setExp(expression);
         
-        System.out.println(var);
+        Factor factor9 = new Factor("");
+        Num num = new Num("1");
+        //factor9.setExp(expression);
+        //factor9.setVar(var);
+        //factor9.setNum(num);
+        
+        System.out.println(factor9);
     }
     
 }

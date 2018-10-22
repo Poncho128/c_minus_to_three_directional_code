@@ -1,5 +1,7 @@
 package tree_structure;
 
+import static tree_structure.Main.counter;
+
 public class Factor {
     
     private Exp expression = null;
@@ -28,13 +30,16 @@ public class Factor {
     
     public String toString(){
         if(this.expression!= null){
-            this.content = "(" + this.expression.toString() +")";
+            this.content += this.expression.toString();
+            this.content += "t"+counter+ " = (t"+(counter-1)+")";
         }else if (this.call != null){
             this.content = this.call.toString();
         }else if (this.var!=null){
-            this.content = this.var.toString();
+            this.content = "t"+counter+" = "+this.var.toString();
+            counter++;
         }else if (this.num!=null){
-            this.content = this.num.toString();
+            this.content = "t"+counter+" = "+this.num.toString();
+            counter++;
         }
         
         return this.content;

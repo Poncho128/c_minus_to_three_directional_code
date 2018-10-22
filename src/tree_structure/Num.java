@@ -9,4 +9,8 @@ public class Num {
         this.content = content;
     }
     
+    public String toString(){
+        return this.content;
+    }
+    
 }
