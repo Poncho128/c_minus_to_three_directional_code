@@ -36,7 +36,6 @@ class Additive_expression {
         if(this.addops.isEmpty() && this.terms.isEmpty()){
             this.content = this.term.toString() + "\n";
             this.operation_count = counter;
-            counter++;
         }else{
             for(int i=0; i<this.addops.size(); i++){
                 if( i == 0){
@@ -44,6 +43,7 @@ class Additive_expression {
                     this.content += "t"+counter+" = t"+this.term.getOperationCount()+" "+ addops.get(i).toString() +" t" + terms.get(i).getOperationCount()+"\n";
                 }else{
                     this.content +=  this.terms.get(i).toString() + "\n";
+                    counter++;
                     this.content += "t"+counter+" = t"+(this.terms.get(i).getOperationCount()-1)+" "+ addops.get(i).toString() +" t" + terms.get(i).getOperationCount()+"\n";
                 }
                 this.operation_count = counter;

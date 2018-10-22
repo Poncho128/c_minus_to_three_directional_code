@@ -57,15 +57,15 @@ public class Main {
         Exp expression = new Exp("");
         expression.setSimpleExpression(simple_expression);
         
-        Id id = new Id("popo");
+        Id id = new Id("wololo");
         Var var = new Var("");
         var.setId(id);
-        //var.setExp(expression);
+        var.setExp(expression);
         
         Factor factor9 = new Factor("");
         Num num = new Num("1");
         //factor9.setExp(expression);
-        //factor9.setVar(var);
+        factor9.setVar(var);
         //factor9.setNum(num);
         
         Factor factor10 = new Factor("8");
@@ -76,17 +76,50 @@ public class Main {
         Simple_expression simple_expression1 = new Simple_expression("");
         simple_expression1.setAdditiveExpression1(additive_expression2);
         Exp expression1 = new Exp("");
-        expression1.setSimpleExpression(simple_expression1);
+        //expression1.setSimpleExpression(simple_expression1);
+        
+        Id id1 = new Id("popo");
+        Var var1 = new Var("");
+        var1.setId(id1);
+        
+        expression1.setVar(var1);
+        expression1.setExp(expression);
+        
+        Factor factor11 = new Factor("");
+        //factor11.setExp(expression1);
+        
+        Factor factor12 = new Factor("9");
+        Term term6 = new Term("");
+        term6.setFactor(factor12);
+        Additive_expression additive_expression3 = new Additive_expression("");
+        additive_expression3.setTerm(term6);
+        Simple_expression simple_expression2 = new Simple_expression("");
+        simple_expression2.setAdditiveExpression1(additive_expression3);
+        Exp expression2 = new Exp("");
+        expression2.setSimpleExpression(simple_expression2);
+        
+        Id id2 = new Id("ayooo");
+        Var var2 = new Var("");
+        var2.setId(id2);
+        var2.setExp(expression2);
+        
         
         
         Arg_list arg_list = new Arg_list("");
-        arg_list.addExp(expression);
         arg_list.addExp(expression1);
+        arg_list.addExp(expression2);
         
         Args args1 = new Args("");
         args1.setArgList(arg_list);
         
-        System.out.println(args1);
+        Id id3 = new Id("no_se_como_ponerle_a_esta_funcion");
+        
+        Call call1 = new Call("");
+        call1.setArgs(args1);
+        call1.setId(id3);
+        
+        System.out.println(call1);
+        
     }
     
 }

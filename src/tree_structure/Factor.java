@@ -31,15 +31,15 @@ public class Factor {
     public String toString(){
         if(this.expression!= null){
             this.content += this.expression.toString();
-            this.content += "t"+counter+ " = (t"+(counter-1)+")";
-        }else if (this.call != null){
+            this.content += "t"+counter+ " = ("+this.expression.getTParam()+")";
+        }else if (this.call != null){//pending
             this.content = this.call.toString();
         }else if (this.var!=null){
-            this.content = "t"+counter+" = "+this.var.toString();
+            this.content += this.var.toString()+"\n";
             counter++;
+            this.content += "t"+counter+" = "+this.var.getTParam();   
         }else if (this.num!=null){
-            this.content = "t"+counter+" = "+this.num.toString();
-            counter++;
+            this.content = this.num.toString();
         }
         
         return this.content;

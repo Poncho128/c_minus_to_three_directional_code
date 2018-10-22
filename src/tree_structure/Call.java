@@ -20,8 +20,9 @@ public class Call {
     @Override
     public String toString(){
         
-        this.content = this.id.toString()+"("+this.args.toString()+")";
-            
+        this.content += this.args.toString();
+        this.content += "LCall "+this.id.toString()+";\n";
+        this.content += "PopParams "+(this.args.getArgsAmount()*4)+";\n";
         return this.content;
     }
     

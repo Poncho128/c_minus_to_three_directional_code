@@ -36,7 +36,6 @@ public class Term {
         if(this.mulops.isEmpty() && this.factors.isEmpty()){
             this.content = "t"+counter + " = " + this.factor.toString() + "\n";
             this.operation_count = counter;
-            counter++;
         }else{
             
             for(int i=0; i<this.mulops.size(); i++){
