@@ -68,7 +68,25 @@ public class Main {
         //factor9.setVar(var);
         //factor9.setNum(num);
         
-        System.out.println(factor9);
+        Factor factor10 = new Factor("8");
+        Term term5 = new Term("");
+        term5.setFactor(factor10);
+        Additive_expression additive_expression2 = new Additive_expression("");
+        additive_expression2.setTerm(term5);
+        Simple_expression simple_expression1 = new Simple_expression("");
+        simple_expression1.setAdditiveExpression1(additive_expression2);
+        Exp expression1 = new Exp("");
+        expression1.setSimpleExpression(simple_expression1);
+        
+        
+        Arg_list arg_list = new Arg_list("");
+        arg_list.addExp(expression);
+        arg_list.addExp(expression1);
+        
+        Args args1 = new Args("");
+        args1.setArgList(arg_list);
+        
+        System.out.println(args1);
     }
     
 }
