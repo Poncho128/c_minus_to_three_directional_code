@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/c_minus/Addop.java</file>
-            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/c_minus/Type_specifier.java</file>
-            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/c_minus/Fun_declaration.java</file>
-            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/c_minus/Var_declaration.java</file>
+            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/tree_structure/Arg_list.java</file>
+            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/tree_structure/Term.java</file>
+            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/tree_structure/Var.java</file>
+            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/tree_structure/Call.java</file>
+            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/tree_structure/Return_statement.java</file>
+            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/tree_structure/Main.java</file>
+            <file>file:/C:/Users/ponch/Documents/NetBeansProjects/C_minus/src/tree_structure/Additive_expression.java</file>
         </group>
     </open-files>
 </project-private>

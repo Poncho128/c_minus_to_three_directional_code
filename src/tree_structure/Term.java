@@ -5,7 +5,7 @@ import static tree_structure.Main.counter;
 
 public class Term {
     
-    private int operationCount = 0;
+    private int operation_count = 0;
     
     private ArrayList<Mulop> mulops;
     private ArrayList<Factor> factors;
@@ -28,14 +28,14 @@ public class Term {
     }
     
     public int getOperationCount(){
-        return this.operationCount;
+        return this.operation_count;
     }
     
     @Override
     public String toString(){
         if(this.mulops.isEmpty() && this.factors.isEmpty()){
             this.content = "t"+counter + " = " + this.factor.toString() + "\n";
-            operationCount = counter;
+            this.operation_count = counter;
             counter++;
         }else{
             
@@ -45,7 +45,7 @@ public class Term {
                 }else{
                     this.content += "t"+counter + " = " + "t" + (counter-1) + mulops.get(i).toString() + factors.get(i).toString() + "\n";
                 }
-                operationCount = counter;
+                this.operation_count = counter;
                 counter++;
             }
         }

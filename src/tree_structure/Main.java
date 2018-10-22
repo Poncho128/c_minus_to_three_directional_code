@@ -40,15 +40,29 @@ public class Main {
         additive_expression.addAddopTerm(addop2, term3);
         additive_expression.addAddopTerm(addop2, term3);
         
-        /*Simple_expression simple_expression = new Simple_expression("");
+        
+        Additive_expression additive_expression1 = new Additive_expression("");
+        Term term4 = new Term("");
+        Factor factor8 = new Factor("8");
+        term4.setFactor(factor8);
+        additive_expression1.setTerm(term4);
+        
+        Simple_expression simple_expression = new Simple_expression("");
         Relop relop = new Relop("<");
         
         simple_expression.setAdditiveExpression1(additive_expression);
         simple_expression.setRelop(relop);
-        simple_expression.setAdditiveExpression2(additive_expression);
-        */
+        simple_expression.setAdditiveExpression2(additive_expression1);
         
-        System.out.println(additive_expression);
+        Exp expression = new Exp("");
+        expression.setSimpleExpression(simple_expression);
+        
+        Id id = new Id("popo");
+        Var var = new Var("");
+        var.setId(id);
+        var.setExp(expression);
+        
+        System.out.println(var);
     }
     
 }

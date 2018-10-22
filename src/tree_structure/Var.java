@@ -1,5 +1,7 @@
 package tree_structure;
 
+import static tree_structure.Main.counter;
+
 class Var {
     
     private Id id = null;
@@ -21,9 +23,12 @@ class Var {
     @Override
     public String toString(){
         if(this.expression == null){
-            this.content = this.id.toString();
+            this.content += this.id.toString();
         }else{
-            this.content = this.id.toString() + "["+ this.expression.toString() +"]";
+            this.content += this.expression.toString(); 
+            this.content += "t"+counter+" = t"+ (counter-1)+" * element_size("+this.id.toString()+")\n";
+            counter++;
+            this.content += "t"+counter+" = &"+this.id.toString() + " + t"+ (counter-1);
         }
         return this.content;
     }

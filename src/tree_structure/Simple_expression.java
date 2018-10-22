@@ -25,15 +25,19 @@ class Simple_expression {
         this.additive_expression_2 = additive_expression_2;
     }
     
+    @Override
     public String toString(){
         if(additive_expression_2 == null){
-            this.content = "t" + counter + " = " + additive_expression_1.toString() + "\n";
+            this.content = this.additive_expression_1.toString() + "\n";
         }else{
-            this.content = "t" + counter + " = " + additive_expression_1.toString() + " " + relop.toString() + " " + this.additive_expression_2.toString() + "\n";
+            this.content +=  this.additive_expression_1.toString() +  this.additive_expression_2.toString() + "\n";
+            counter--;
+            this.content += "t"+counter+" = t"+this.additive_expression_1.getOperationCount()+" "+ relop.toString() +" t" + (this.additive_expression_2.getOperationCount()-1)+"\n";
         }
         
         counter++;
         
         return this.content;
     }
+    
 }

@@ -5,6 +5,8 @@ import static tree_structure.Main.counter;
 
 class Additive_expression {
     
+    private int operation_count = 0;
+    
     private Term term = null;
     private ArrayList <Addop> addops;
     private ArrayList <Term> terms;
@@ -25,10 +27,15 @@ class Additive_expression {
         this.terms.add(term);
     }
     
+    public int getOperationCount(){
+        return this.operation_count;
+    }
+    
     @Override
     public String toString(){
         if(this.addops.isEmpty() && this.terms.isEmpty()){
             this.content = this.term.toString() + "\n";
+            this.operation_count = counter;
             counter++;
         }else{
             for(int i=0; i<this.addops.size(); i++){
@@ -39,6 +46,7 @@ class Additive_expression {
                     this.content +=  this.terms.get(i).toString() + "\n";
                     this.content += "t"+counter+" = t"+(this.terms.get(i).getOperationCount()-1)+" "+ addops.get(i).toString() +" t" + terms.get(i).getOperationCount()+"\n";
                 }
+                this.operation_count = counter;
                 counter++;
             }
         }
