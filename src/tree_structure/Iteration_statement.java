@@ -1,6 +1,7 @@
 package tree_structure;
 
 import static tree_structure.Main.counter;
+import static tree_structure.Main.labelCounter;
 
 public class Iteration_statement {
     
@@ -18,5 +19,23 @@ public class Iteration_statement {
     
     public void setStatementList(Statement_obj statement_obj){
         this.statement_obj = statement_obj;
+    }
+    
+    @Override
+    public String toString(){
+        int bufferLabelCounter = labelCounter;
+        labelCounter += 2;
+        
+        this.content += this.expression.toString();
+        this.content += "label L" + bufferLabelCounter  + "\n";
+        
+        this.content += "t" + counter  + " = " + this.expression.getTParam() +"\n";       
+        this.content += "if false t" + counter  + " goto label L" + (bufferLabelCounter+1) + "\n";
+        counter++;
+        
+        this.content += this.statement_obj.toString()+"\n";
+        this.content += "goto label L" + bufferLabelCounter + "\n";
+        this.content += "label L" + (bufferLabelCounter+1)  + "\n";
+        return this.content;
     }
 }

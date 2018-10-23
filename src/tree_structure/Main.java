@@ -78,15 +78,33 @@ public class Main {
         //__________Complex Selection_________________________________________________________________________________________
         
         
-        Complex_selection_statement complex_selection_statement = new Complex_selection_statement("");
-        complex_selection_statement.setExpression(expression);
-        complex_selection_statement.setStatementObj1(statement_obj1);
-        complex_selection_statement.setStatementObj2(statement_obj2);
+        //Complex_selection_statement complex_selection_statement = new Complex_selection_statement("");
+        //complex_selection_statement.setExpression(expression);
+        //complex_selection_statement.setStatementObj1(statement_obj1);
+        //complex_selection_statement.setStatementObj2(statement_obj2);
+        
+        //____________________________________________________________________________________________________________________
+        
+        //__________Iteration Statement_______________________________________________________________________________________
+        
+        
+        //Iteration_statement iteration_statement = new Iteration_statement("");
+        //iteration_statement.setExp(expression);
+        //iteration_statement.setStatementList(statement_obj1);
+        
+        //____________________________________________________________________________________________________________________
+        
+        //__________Expression Statement_______________________________________________________________________________________
+        
+        
+        Expression_statement expression_statement = new Expression_statement("");
+        expression_statement.setExp(expression);
+        //iteration_statement.setStatementList(statement_obj1);
         
         //____________________________________________________________________________________________________________________
         
         
-        System.out.println(complex_selection_statement);
+        System.out.println(expression_statement);
         
         
         
