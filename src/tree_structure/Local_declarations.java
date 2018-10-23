@@ -16,4 +16,15 @@ public class Local_declarations {
         this.var_declarations.add(var_declaration);
 
     }
+    
+    public String toString(){
+        if(!this.var_declarations.isEmpty()){
+                for(int i=0; i<var_declarations.size(); i++){
+                    this.content += var_declarations.get(i).toString()+"\n";
+                }
+               
+        }
+
+        return this.content;
+    }
 }

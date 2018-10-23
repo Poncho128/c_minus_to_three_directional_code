@@ -69,28 +69,28 @@ public class Main {
         //__________Simple Selection_________________________________________________________________________________________
         
         
-        //Simple_selection_statement simple_selection_statement = new Simple_selection_statement("");
-        //simple_selection_statement.setExpression(expression);
-        //simple_selection_statement.setStatementList1(statement_obj1);
+//        Simple_selection_statement simple_selection_statement = new Simple_selection_statement("");
+//        simple_selection_statement.setExpression(expression);
+//        simple_selection_statement.setStatementList1(statement_obj1);
         
         //____________________________________________________________________________________________________________________
         
         //__________Complex Selection_________________________________________________________________________________________
         
         
-        //Complex_selection_statement complex_selection_statement = new Complex_selection_statement("");
-        //complex_selection_statement.setExpression(expression);
-        //complex_selection_statement.setStatementObj1(statement_obj1);
-        //complex_selection_statement.setStatementObj2(statement_obj2);
+        Complex_selection_statement complex_selection_statement = new Complex_selection_statement("");
+        complex_selection_statement.setExpression(expression);
+        complex_selection_statement.setStatementObj1(statement_obj1);
+        complex_selection_statement.setStatementObj2(statement_obj2);
         
         //____________________________________________________________________________________________________________________
         
         //__________Iteration Statement_______________________________________________________________________________________
         
         
-        //Iteration_statement iteration_statement = new Iteration_statement("");
-        //iteration_statement.setExp(expression);
-        //iteration_statement.setStatementList(statement_obj1);
+//        Iteration_statement iteration_statement = new Iteration_statement("");
+//        iteration_statement.setExp(expression);
+//        iteration_statement.setStatementList(statement_obj1);
         
         //____________________________________________________________________________________________________________________
         
@@ -99,12 +99,62 @@ public class Main {
         
         Expression_statement expression_statement = new Expression_statement("");
         expression_statement.setExp(expression);
-        //iteration_statement.setStatementList(statement_obj1);
         
         //____________________________________________________________________________________________________________________
         
+//      Selection_statement selection_statement = new Selection_statement("");
+//      selection_statement.setSimpleSelectionStatement(simple_selection_statement);
+
+        //____________________________________________________________________________________________________________________
+      
+        Selection_statement selection_statement = new Selection_statement("");
+        selection_statement.setComplexSelectionStatement(complex_selection_statement);
+
+        //____________________________________________________________________________________________________________________
+    
+        Statement_obj statement_obj = new Statement_obj("");
+        Statement_obj statement_obj3 = new Statement_obj("");
+        //statement_obj.setIterationStatement(iteration_statement);
+        //statement_obj.setReturnStatement(return_statement1);
+        statement_obj.SetSelectionStatement(selection_statement);
+        statement_obj3.SetExpressionStatement(expression_statement);
         
-        System.out.println(expression_statement);
+        //____________________________________________________________________________________________________________________
+
+        Statement_list statement_list = new Statement_list("");
+        statement_list.addStatementObj(statement_obj);
+        statement_list.addStatementObj(statement_obj3);
+        
+        
+        Num num3 = new Num("3");
+        Int_obj int_obj = new Int_obj();
+        Type_specifier type_specifier = new Type_specifier("");
+        type_specifier.setIntObj(int_obj);
+        Id id = new Id("wololo");
+        Id id1 = new Id("Bruno");
+        Var_declaration var_declaration = new Var_declaration("");
+        var_declaration.setTypeSpecifier(type_specifier);
+        var_declaration.setNum(num3);
+        var_declaration.setId(id);
+        Var_declaration var_declaration1 = new Var_declaration("");
+        var_declaration1.setTypeSpecifier(type_specifier);
+        var_declaration1.setId(id1);
+        
+        Local_declarations local_declarations = new Local_declarations("");
+        local_declarations.addVarDeclaration(var_declaration);
+        local_declarations.addVarDeclaration(var_declaration1);
+        
+        //____________________________________________________________________________________________________________________
+
+        Compound_statement compound_statement = new Compound_statement("");
+        compound_statement.setLocalDeclarations(local_declarations);
+        compound_statement.setStatementList(statement_list);
+        
+
+        Statement_obj statement_obj4 = new Statement_obj("");
+        statement_obj4.SetCompundStatement(compound_statement);
+        
+        System.out.println(statement_obj4);
         
         
         

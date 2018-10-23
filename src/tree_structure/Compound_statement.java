@@ -17,6 +17,20 @@ public class Compound_statement {
     public void setLocalDeclarations(Local_declarations local_declarations){
         this.local_declarations = local_declarations;
     }
+    
+    
+    public String toString(){
+        this.content += "{\n";
+            
+        if(this.local_declarations != null){
+            this.content += this.local_declarations.toString();
+        }
+        if(this.statement_list != null){
+            this.content += this.statement_list.toString();
+        }
+        this.content += "\n}\n";
+        return this.content;
+    }
         
     
 }

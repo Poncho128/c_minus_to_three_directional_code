@@ -33,7 +33,15 @@ public class Statement_obj {
     
     public String toString(){
         if(this.return_statement != null){
-             this.content += this.return_statement.toString();      
+            this.content += this.return_statement.toString();      
+        }else if (this.iteration_statement!=null){
+            this.content += this.iteration_statement.toString();
+        }else if (this.selection_statement!=null){
+            this.content += this.selection_statement.toString();
+        }else if (this.compound_statement!=null){ //pending
+            this.content += this.compound_statement.toString();
+        }else{
+            this.content += this.expression_statement.toString();
         }
         
         return this.content;

@@ -18,4 +18,15 @@ public class Selection_statement {
         this.complex_selection_statement = complex_selection_statement;
     }
     
+    public String toString(){
+        
+        if(this.simple_selection_statement !=null){    
+            this.content = this.simple_selection_statement.toString();
+        }else{
+            this.content = this.complex_selection_statement.toString();
+        }
+        
+        return this.content;
+    }
+    
 }

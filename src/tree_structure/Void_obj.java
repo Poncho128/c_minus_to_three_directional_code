@@ -2,11 +2,13 @@ package tree_structure;
 
 class Void_obj {
     
-    private String content = "";
+    private String content = "void";
     
-    public Void_obj(String content){
-        this.content = content;
+    public Void_obj(){
     }
     
+    public String toString(){
+        return this.content;
+    }
 }
 

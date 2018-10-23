@@ -16,5 +16,15 @@ public class Statement_list {
         this.statement_objs.add(statement_obj);
 
     }
+    
+    public String toString(){
+        if(!this.statement_objs.isEmpty()){
+                for(int i=0; i<statement_objs.size(); i++){
+                    this.content += statement_objs.get(i).toString();
+                }
+               
+        }
 
+        return this.content;
+    }
 }

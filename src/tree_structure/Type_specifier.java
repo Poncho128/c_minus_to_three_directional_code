@@ -17,4 +17,14 @@ class Type_specifier {
     public void setVoidObj(Void_obj void_obj){
         this.void_obj = void_obj;
     }
+    
+    public String toString(){
+        if(this.int_obj!=null){
+            this.content = this.int_obj.toString();
+        }else{
+            this.content = this.void_obj.toString();
+        }
+        
+        return this.content;
+    }
 }

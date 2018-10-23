@@ -2,10 +2,14 @@ package tree_structure;
 
 class Int_obj {
     
-    private String content = "";
+    private String content = "int";
     
-    public Int_obj(String content){
-        this.content = content;
+    public Int_obj(){
+       
+    }
+    
+    public String toString(){
+        return this.content;
     }
     
 }

@@ -22,4 +22,14 @@ public class Var_declaration {
     public void setNum(Num num){
         this.num = num;
     }
+    
+    public String toString(){
+        if(this.num==null){
+            this.content = this.type_specifier.toString() + " " + this.id.toString();
+        }else{
+            this.content = this.type_specifier.toString() + " " + this.id.toString() + "["+ this.num.toString() +"]";
+        }
+        
+        return this.content;
+    }
 }
