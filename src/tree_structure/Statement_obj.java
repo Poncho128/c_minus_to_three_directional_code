@@ -1,5 +1,7 @@
 package tree_structure;
 
+import static tree_structure.Main.counter;
+
 public class Statement_obj {
     
     private Expression_statement expression_statement = null;
@@ -13,20 +15,28 @@ public class Statement_obj {
         this.content = content;
     }
     
-    private void SetExpressionStatement(Expression_statement expression_statement){
+    public void SetExpressionStatement(Expression_statement expression_statement){
         this.expression_statement = expression_statement;
     }
-    private void SetCompundStatement(Compound_statement compound_statement){
+    public void SetCompundStatement(Compound_statement compound_statement){
         this.compound_statement = compound_statement;
     }
-    private void SetSelectionStatement(Selection_statement selection_statement){
+    public void SetSelectionStatement(Selection_statement selection_statement){
         this.selection_statement = selection_statement;
     }
-    private void setIterationStatement(Iteration_statement iteration_statement){
+    public void setIterationStatement(Iteration_statement iteration_statement){
         this.iteration_statement = iteration_statement;
     }
-    private void setReturnStatement(Return_statement return_statement){
+    public void setReturnStatement(Return_statement return_statement){
         this.return_statement = return_statement;
+    }
+    
+    public String toString(){
+        if(this.return_statement != null){
+             this.content += this.return_statement.toString();      
+        }
+        
+        return this.content;
     }
     
 }

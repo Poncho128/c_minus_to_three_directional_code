@@ -1,5 +1,7 @@
 package tree_structure;
 
+import static tree_structure.Main.counter;
+
 public class Iteration_statement {
     
     private Exp expression = null;

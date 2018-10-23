@@ -1,5 +1,7 @@
 package tree_structure;
 
+import static tree_structure.Main.labelCounter;
+
 public class Complex_selection_statement {
     
     private Exp expression = null;
@@ -19,6 +21,19 @@ public class Complex_selection_statement {
     }
     public void setStatementObj2(Statement_obj statement_obj){
         this.statement_obj2 = statement_obj;
+    }
+    
+    public String toString(){
+        int bufferLabelCounter = labelCounter;
+        labelCounter += 2;
+        this.content += this.expression.toString();
+        this.content += "if false " + this.expression.getTParam() + " goto label L" + (bufferLabelCounter) + "\n";
+        this.content += this.statement_obj1.toString()+"\n";
+        this.content += "goto L" + (bufferLabelCounter+1)+ "\n";
+        this.content += "label L" + bufferLabelCounter  + "\n";
+        this.content += this.statement_obj2.toString()+"\n";
+        this.content += "label L" + (bufferLabelCounter+1)  + "\n";
+        return this.content;
     }
     
 }
