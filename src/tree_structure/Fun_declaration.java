@@ -27,4 +27,13 @@ public class Fun_declaration {
     public void setCompoundStatement(Compound_statement compound_statement){
         this.compound_statement = compound_statement;
     }
+    
+    @Override
+    public String toString(){
+        this.content += this.id.toString()+":\n";
+        this.content += "BeginFunction\n";
+        this.content += this.compound_statement.toString();
+        this.content += "\nEndFunction";
+        return this.content;
+    }
 }

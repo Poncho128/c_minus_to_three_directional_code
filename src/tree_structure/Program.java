@@ -12,4 +12,9 @@ public class Program {
     public void setDeclarationList(Declaration_list declaration_list){
         this.declaration_list = declaration_list;
     }
+    
+    public String toString(){
+        this.content = this.declaration_list.toString();
+        return this.content;
+    }
 }

@@ -174,11 +174,25 @@ public class Main {
         Void_obj void_obj = new Void_obj();
         
         Params params = new Params("");
-        //params.setParamList(param_list);
-        params.setVoidObj(void_obj);
+        params.setParamList(param_list);
+        //params.setVoidObj(void_obj);
         
-        System.out.println(params);
-       
+        Id id4 = new Id("papaya");
+        Fun_declaration fun_declaration = new Fun_declaration("");
+        fun_declaration.setId(id4);
+        fun_declaration.setCompoundStatement(compound_statement);
+        
+        Declaration declaration= new Declaration("");
+        declaration.setFunDeclaration(fun_declaration);
+        
+        Declaration_list declaration_list = new  Declaration_list("");
+        declaration_list.addDeclaration(declaration);
+        
+        Program program = new Program("");
+        program.setDeclarationList(declaration_list);
+        
+        System.out.println(program);
+        
         
     }
     

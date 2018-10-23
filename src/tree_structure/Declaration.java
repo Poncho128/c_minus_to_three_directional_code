@@ -17,4 +17,13 @@ public class Declaration {
     public void setFunDeclaration(Fun_declaration fun_declaration){
         this.fun_declaration = fun_declaration;
     }
+    
+    public String toString(){
+        if(this.var_declaration != null){
+            this.content = this.var_declaration.toString();
+        }else{
+            this.content = this.fun_declaration.toString();
+        }
+        return this.content;
+    }
 }

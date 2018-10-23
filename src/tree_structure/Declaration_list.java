@@ -15,4 +15,15 @@ public class Declaration_list {
     public void addDeclaration(Declaration declaration){
         this.declarations.add(declaration);
     }
+    
+    public String toString(){
+        if(!this.declarations.isEmpty()){
+                for(int i=0; i<declarations.size(); i++){
+                    this.content += declarations.get(i).toString();
+                }
+               
+        }
+
+        return this.content;
+    }
 }
