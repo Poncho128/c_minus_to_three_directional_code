@@ -23,4 +23,14 @@ class Param {
         this.brackets = brackets;
     }
     
+    public String toString(){
+        if(this.brackets==null){
+            this.content = this.type_specifier.toString() + " " + this.id.toString();
+        }else{
+            this.content = this.type_specifier.toString() + " " + this.id.toString() + this.brackets.toString();
+        }
+        
+        return this.content;
+    }
+    
 }

@@ -2,10 +2,14 @@ package tree_structure;
 
 class Brackets {
     
-    private String content = "";
+    private String content = "[]";
     
-    public Brackets(String content){
-        this.content = content;
+    public Brackets(){
+    }
+    
+    @Override
+    public String toString(){
+        return this.content;
     }
     
 }

@@ -154,9 +154,31 @@ public class Main {
         Statement_obj statement_obj4 = new Statement_obj("");
         statement_obj4.SetCompundStatement(compound_statement);
         
-        System.out.println(statement_obj4);
         
+        Brackets brackets = new Brackets();
+        Param param = new Param("");
+        param.setTypeSpecifier(type_specifier);
+        Id id2 = new Id("Ayoooo");
+        param.setId(id2);
+        param.setBrackets(brackets);
         
+        Param param1 = new Param("");
+        param1.setTypeSpecifier(type_specifier);
+        Id id3 = new Id("Tomy");
+        param1.setId(id3);
+        
+        Param_list param_list = new Param_list("");
+        param_list.addParam(param);
+        param_list.addParam(param1);
+        
+        Void_obj void_obj = new Void_obj();
+        
+        Params params = new Params("");
+        //params.setParamList(param_list);
+        params.setVoidObj(void_obj);
+        
+        System.out.println(params);
+       
         
     }
     

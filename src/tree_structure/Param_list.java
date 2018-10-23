@@ -15,4 +15,15 @@ class Param_list {
     public void addParam(Param param){
         this.params.add(param);
     }
+    
+    public String toString(){
+        if(!this.params.isEmpty()){
+                for(int i=0; i<params.size(); i++){
+                    this.content += params.get(i).toString()+"\n";
+                }
+               
+        }
+
+        return this.content;
+    }
 }

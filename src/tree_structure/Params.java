@@ -17,4 +17,14 @@ class Params {
     public void setVoidObj(Void_obj void_obj){
         this.void_obj = void_obj;
     }
+    
+    public String toString(){
+        
+        if(this.param_list!= null){
+            this.content = this.param_list.toString();
+        }else{
+            this.content = this.void_obj.toString();
+        }
+        return this.content;
+    }
 }
