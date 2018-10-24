@@ -23,6 +23,8 @@ public class Main {
     public static int factorCounter = 0;
     public static int paramListCounter = 0;
     public static int localDeclarationsCounter = 0;
+    public static int termCounter = 0;
+    public static int declarationCounter = 0;
     
     public static void main(String[] args) throws IOException {
         
@@ -58,6 +60,8 @@ public class Main {
          ArrayList<Factor> factor_arr = new ArrayList<Factor>();
          ArrayList<Param_list> param_list_arr = new ArrayList<Param_list>();
          ArrayList<Local_declarations> local_declarations_arr = new ArrayList<Local_declarations>();
+         ArrayList<Term> term_arr = new ArrayList<Term>();
+         ArrayList<Declaration> declaration_arr = new ArrayList<Declaration>();
         
         
         //----ID-NUM-relop-addop-mulop-int-void-brackets-----------------------------//
@@ -419,6 +423,160 @@ public class Main {
         for(int i= 0; i< tokens.size(); i++){
         
             System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }
+        
+        //----factorNum-paramList-localDeclarations--------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("FACTOR")){
+                
+                Term term = new Term("");
+                //set de partes
+                term.setFactor(factor_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "TERM");
+                indexes.set(i, termCounter);
+                //agregar al array
+                term_arr.add(term);
+                //imprimir debug
+                System.out.println(current + " is a term with index "+termCounter);
+                //aumentar contador
+                termCounter++;
+
+                //eliminar tokens deprecados
+                
+            }else if(current.equals("PARAM_LIST")){
+                
+                Params params = new Params("");
+                //set de partes
+                params.setParamList(param_list_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "PARAMS");
+                indexes.set(i, paramsCounter);
+                //agregar al array
+                params_arr.add(params);
+                //imprimir debug
+                System.out.println(current + " is a params with index "+paramsCounter);
+                //aumentar contador
+                paramsCounter++;
+
+                //eliminar tokens deprecados
+                    
+                
+                
+            }else if(current.equals("VAR_DECLARATION")){
+                
+                Declaration declaration = new Declaration("");
+                //set de partes
+                declaration.setVarDeclaration(var_declaration_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "DECLARATION");
+                indexes.set(i, declarationCounter);
+                //agregar al array
+                declaration_arr.add(declaration);
+                //imprimir debug
+                System.out.println(current + " is a declaration with index "+declarationCounter);
+                //aumentar contador
+                declarationCounter++;
+
+                //eliminar tokens deprecados
+                
+            }
+            
+        }
+        
+                
+        System.out.println("-----updated_list-5---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }
+        
+        //----factorNum-paramList-localDeclarations--------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            /*if(current.equals("FACTOR")){
+                
+                Term term = new Term("");
+                //set de partes
+                term.setFactor(factor_arr.get(indexes.get(i)));
+
+
+                
+                while((tokens.get(i+1).equals("MULOP")) && (tokens.get(i+2).equals("FACTOR"))){
+                    System.out.println("wololo");
+                    //set de partes
+                    term.addMulopFactor(mulop_arr.get(indexes.get(i+1)),factor_arr.get(indexes.get(i+2)));
+                    //imprimir debug
+                    System.out.println(current + " is a term with index "+termCounter);
+
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                //token e index set
+                tokens.set(i, "TERM");
+                indexes.set(i, termCounter);
+                //agregar al array
+                term_arr.add(term);
+                //imprimir debug
+                System.out.println(current + " is a term with index "+termCounter);
+                //aumentar contador
+                termCounter++;
+
+                
+            }else */if(current.equals("PARAM_LIST")){
+                
+                Params params = new Params("");
+                //set de partes
+                params.setParamList(param_list_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "PARAMS");
+                indexes.set(i, paramsCounter);
+                //agregar al array
+                params_arr.add(params);
+                //imprimir debug
+                System.out.println(current + " is a params with index "+paramsCounter);
+                //aumentar contador
+                paramsCounter++;
+
+                //eliminar tokens deprecados
+                    
+                
+                
+            }else if(current.equals("VAR_DECLARATION")){
+                
+                Declaration declaration = new Declaration("");
+                //set de partes
+                declaration.setVarDeclaration(var_declaration_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "DECLARATION");
+                indexes.set(i, declarationCounter);
+                //agregar al array
+                declaration_arr.add(declaration);
+                //imprimir debug
+                System.out.println(current + " is a declaration with index "+declarationCounter);
+                //aumentar contador
+                declarationCounter++;
+
+                //eliminar tokens deprecados
+                
+            }
+            
+        }
+        
+                
+        System.out.println("-----updated_list-5---");
+        for(int i= 0; i< var_declaration_arr.size(); i++){
+        
+            System.out.println(var_declaration_arr.get(i)+ " " +indexes.get(i));
         
         }
     }
