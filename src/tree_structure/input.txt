@@ -1,0 +1,16 @@
+int fact ( int x , int y [] )
+{
+    if ( x > 1 )
+        return x * fact ( x - 1 ) ;
+    else
+        return 1 ;
+}
+
+void main ( void )
+{
+    int x ;
+    int y [ 5 ] ;
+    x = read ( ) ;
+    if ( x > 0 )
+        write ( fact ( x ) )
+} 
