@@ -37,7 +37,8 @@ public class Main {
     public static int statementObjCounter = 0;
     public static int complexSelectionStatementCounter = 0;
     public static int simpleSelectionStatementCounter = 0;
-    public static int selectionCounter = 0;
+    public static int selectionStatementCounter = 0;
+    public static int iterationStatementCounter = 0;
     
     public static void main(String[] args) throws IOException {
         
@@ -88,6 +89,7 @@ public class Main {
          ArrayList<Complex_selection_statement> complex_selection_statement_arr = new ArrayList<Complex_selection_statement>();
          ArrayList<Simple_selection_statement> simple_selection_statement_arr = new ArrayList<Simple_selection_statement>();
          ArrayList<Selection_statement> selection_statement_arr = new ArrayList<Selection_statement>();
+         ArrayList<Iteration_statement> iteration_statement_arr = new ArrayList<Iteration_statement>();
 
         
         //----ID-NUM-relop-addop-mulop-int-void-brackets-----------------------------//
@@ -2036,7 +2038,7 @@ public class Main {
         
         }
         
-        //------------Selection----------------------------------//
+        //------------Selection_statement and iterative_statement----------------------------------//
         for(int i= 0; i< tokens.size(); i++){
             String current = tokens.get(i);
             
@@ -2048,13 +2050,13 @@ public class Main {
            
                 //token e index set
                 tokens.set(i, "SELECTION_STATEMENT");     
-                indexes.set(i, selectionCounter);
+                indexes.set(i, selectionStatementCounter);
                 //agregar al array
                 selection_statement_arr.add(selection_statement);
                 //imprimir debug
-                System.out.println(current + " is a selection with index "+selectionCounter);
+                System.out.println(current + " is a selection with index "+selectionStatementCounter);
                 //aumentar contador
-                selectionCounter++;
+                selectionStatementCounter++;
     
             }else if(current.equals("COMPLEX_SELECTION_STATEMENT")){
                 
@@ -2064,20 +2066,45 @@ public class Main {
            
                 //token e index set
                 tokens.set(i, "SELECTION_STATEMENT");     
-                indexes.set(i, selectionCounter);
+                indexes.set(i, selectionStatementCounter);
                 //agregar al array
                 selection_statement_arr.add(selection_statement);
                 //imprimir debug
-                System.out.println(current + " is a selection with index "+selectionCounter);
+                System.out.println(current + " is a selection with index "+selectionStatementCounter);
                 //aumentar contador
-                selectionCounter++;
-    
-            }
-        }
-            
-        
-        
+                selectionStatementCounter++;
                 
+            }else if(current.equals("while")){
+                if( (i < tokens.size()-4) && (tokens.get(i+1).equals("(")) && (tokens.get(i+2).equals("EXPRESSION")) && 
+                     (tokens.get(i+3).equals(")")) && (tokens.get(i+4).equals("STATEMENT_OBJ"))){
+
+                        Iteration_statement iteration_statement = new Iteration_statement("");
+                        //set de partes
+                        iteration_statement.setExp(expression_arr.get(indexes.get(i+2)));
+                        iteration_statement.setStatementList(statement_obj_arr.get(indexes.get(i+4)));
+
+                        //token e index set
+                        tokens.set(i, "ITERATION_STATEMENT");     
+                        indexes.set(i, iterationStatementCounter);
+                        //agregar al array
+                        iteration_statement_arr.add(iteration_statement);
+                        //imprimir debug
+                        System.out.println(current + " is an iteratin statement with index "+iterationStatementCounter);
+                        //aumentar contador
+                        iterationStatementCounter++;
+
+                       
+                        tokens.remove(i+4);
+                        indexes.remove(i+4);
+                        tokens.remove(i+3);
+                        indexes.remove(i+3);
+                        tokens.remove(i+2);
+                        indexes.remove(i+2);
+                        tokens.remove(i+1);
+                        indexes.remove(i+1);
+                }
+            }
+        }                     
         System.out.println("-----updated_list-35---");
         for(int i= 0; i< tokens.size(); i++){
         

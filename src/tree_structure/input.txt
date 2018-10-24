@@ -6,6 +6,10 @@ int fact ( int x , int y [] )
         return fact ( 1 - 1 ) + 1 ;
     else
         return 1 ;
+
+    while ( x > 1 )
+         return fact ( 1 - 1 ) + 1 ;
+    
 }
 
 void main ( void )
