@@ -26,6 +26,8 @@ public class Main {
     public static int termCounter = 0;
     public static int declarationCounter = 0;
     public static int additiveExpressionCounter = 0;
+    public static int simpleExpressionCounter = 0;
+    public static int expressionCounter = 0;
     
     public static void main(String[] args) throws IOException {
         
@@ -64,6 +66,8 @@ public class Main {
          ArrayList<Term> term_arr = new ArrayList<Term>();
          ArrayList<Declaration> declaration_arr = new ArrayList<Declaration>();
          ArrayList<Additive_expression> additive_expression_arr = new ArrayList<Additive_expression>();
+         ArrayList<Simple_expression> simple_expression_arr = new ArrayList<Simple_expression>();
+         ArrayList<Exp> expression_arr = new ArrayList<Exp>();
         
         
         //----ID-NUM-relop-addop-mulop-int-void-brackets-----------------------------//
@@ -588,6 +592,80 @@ public class Main {
         
                 
         System.out.println("-----updated_list-6---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }
+        
+        //-------------simple expression--------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("ADDITIVE_EXPRESSION")){
+                
+                Simple_expression simple_expression = new Simple_expression("");
+                //set de partes
+                simple_expression.setAdditiveExpression1(additive_expression_arr.get(indexes.get(i)));
+                if((tokens.get(i+1).equals("RELOP")) && (tokens.get(i+2).equals("ADDITIVE_EXPRESSION"))){
+                    simple_expression.setRelop(relop_arr.get(indexes.get(i+1)));
+                    simple_expression.setAdditiveExpression2(additive_expression_arr.get(indexes.get(i+2)));
+                    
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                
+                //token e index set
+                tokens.set(i, "SIMPLE_EXPRESSION");     
+                indexes.set(i, simpleExpressionCounter);
+                //agregar al array
+                simple_expression_arr.add(simple_expression);
+                //imprimir debug
+                System.out.println(current + " is a simple expression with index "+simpleExpressionCounter);
+                //aumentar contador
+                simpleExpressionCounter++;
+      
+            }
+            
+        }
+        
+                
+        System.out.println("-----updated_list-7---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }
+        
+        //-------------sexpression--------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("SIMPLE_EXPRESSION")){
+                
+                Exp expression = new Exp("");
+                //set de partes
+                expression.setSimpleExpression(simple_expression_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "EXPRESSION");     
+                indexes.set(i, expressionCounter);
+                //agregar al array
+                expression_arr.add(expression);
+                //imprimir debug
+                System.out.println(current + " is an expression with index "+expressionCounter);
+                //aumentar contador
+                expressionCounter++;
+      
+            }
+            
+        }
+        
+                
+        System.out.println("-----updated_list-8---");
         for(int i= 0; i< tokens.size(); i++){
         
             System.out.println(tokens.get(i)+ " " +indexes.get(i));
