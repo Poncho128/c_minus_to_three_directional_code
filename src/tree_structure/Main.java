@@ -35,6 +35,8 @@ public class Main {
     public static int returnStatementCounter = 0;
     public static int expressionStatementCounter = 0;
     public static int statementObjCounter = 0;
+    public static int complexSelectionStatementCounter = 0;
+    public static int simpleSelectionStatementCounter = 0;
     
     public static void main(String[] args) throws IOException {
         
@@ -82,6 +84,8 @@ public class Main {
          ArrayList<Return_statement> return_statement_arr = new ArrayList<Return_statement>();
          ArrayList<Expression_statement> expression_statement_arr = new ArrayList<Expression_statement>();
          ArrayList<Statement_obj> statement_obj_arr = new ArrayList<Statement_obj>();
+         ArrayList<Complex_selection_statement> complex_selection_statement_arr = new ArrayList<Complex_selection_statement>();
+         ArrayList<Simple_selection_statement> simple_selection_statement_arr = new ArrayList<Simple_selection_statement>();
         
         //----ID-NUM-relop-addop-mulop-int-void-brackets-----------------------------//
         for(int i= 0; i< tokens.size(); i++){
@@ -1947,6 +1951,82 @@ public class Main {
         
                 
         System.out.println("-----updated_list-33---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }
+        
+                //------------simple-and-complex-selection----------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("if")){
+                if( (i < tokens.size()-6) && (tokens.get(i+1).equals("(")) && (tokens.get(i+2).equals("EXPRESSION")) && 
+                 (tokens.get(i+3).equals(")")) && (tokens.get(i+4).equals("STATEMENT_OBJ")) && (tokens.get(i+5).equals("else")) && (tokens.get(i+6).equals("STATEMENT_OBJ"))){
+                    
+                    Complex_selection_statement complex_selection_statement = new Complex_selection_statement("");
+                    //set de partes
+                    complex_selection_statement.setExpression(expression_arr.get(indexes.get(i+2)));
+                    complex_selection_statement.setStatementObj1(statement_obj_arr.get(indexes.get(i+4)));
+                    complex_selection_statement.setStatementObj2(statement_obj_arr.get(indexes.get(i+6)));
+
+                    //token e index set
+                    tokens.set(i, "COMPLEX_SELECTION_STATEMENT");     
+                    indexes.set(i, complexSelectionStatementCounter);
+                    //agregar al array
+                    complex_selection_statement_arr.add(complex_selection_statement);
+                    //imprimir debug
+                    //System.out.println(current + " is an expression with index "+expressionCounter);
+                    //aumentar contador
+                    complexSelectionStatementCounter++;
+                    
+                    tokens.remove(i+6);
+                    indexes.remove(i+6);
+                    tokens.remove(i+5);
+                    indexes.remove(i+5);
+                    tokens.remove(i+4);
+                    indexes.remove(i+4);
+                    tokens.remove(i+3);
+                    indexes.remove(i+3);
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                }else if( (i < tokens.size()-4) && (tokens.get(i+1).equals("(")) && (tokens.get(i+2).equals("EXPRESSION")) && 
+                 (tokens.get(i+3).equals(")")) && (tokens.get(i+4).equals("STATEMENT_OBJ"))){
+                
+                    Simple_selection_statement simple_selection_statement = new Simple_selection_statement("");
+                    //set de partes
+                    simple_selection_statement.setExpression(expression_arr.get(indexes.get(i+2)));
+                    simple_selection_statement.setStatementObj(statement_obj_arr.get(indexes.get(i+4)));
+
+                    //token e index set
+                    tokens.set(i, "SIMPLE_SELECTION_STATEMENT");     
+                    indexes.set(i, simpleSelectionStatementCounter);
+                    //agregar al array
+                    simple_selection_statement_arr.add(simple_selection_statement);
+                    //imprimir debug
+                    //System.out.println(current + " is an expression with index "+expressionCounter);
+                    //aumentar contador
+                    simpleSelectionStatementCounter++;
+                    
+                    tokens.remove(i+4);
+                    indexes.remove(i+4);
+                    tokens.remove(i+3);
+                    indexes.remove(i+3);
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+            }
+            
+        }
+        
+                
+        System.out.println("-----updated_list-34---");
         for(int i= 0; i< tokens.size(); i++){
         
             System.out.println(tokens.get(i)+ " " +indexes.get(i));

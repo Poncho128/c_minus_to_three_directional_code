@@ -16,7 +16,7 @@ public class Simple_selection_statement {
         this.expression = expression;
     }
     
-    public void setStatementList1(Statement_obj statement_obj){
+    public void setStatementObj(Statement_obj statement_obj){
         this.statement_obj = statement_obj;
     }
     
