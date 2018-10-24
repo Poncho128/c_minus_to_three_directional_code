@@ -32,6 +32,8 @@ public class Main {
     public static int argListCounter = 0;
     public static int argsCounter = 0;
     public static int callCounter = 0;
+    public static int returnStatementCounter = 0;
+    public static int expressionStatementCounter = 0;
     
     public static void main(String[] args) throws IOException {
         
@@ -76,6 +78,8 @@ public class Main {
          ArrayList<Arg_list> arg_list_arr = new ArrayList<Arg_list>();
          ArrayList<Args> args_arr = new ArrayList<Args>();
          ArrayList<Call> call_arr = new ArrayList<Call>();
+         ArrayList<Return_statement> return_statement_arr = new ArrayList<Return_statement>();
+         ArrayList<Expression_statement> expression_statement_arr = new ArrayList<Expression_statement>();
         
         //----ID-NUM-relop-addop-mulop-int-void-brackets-----------------------------//
         for(int i= 0; i< tokens.size(); i++){
@@ -171,10 +175,10 @@ public class Main {
             
         }
 
-        /*System.out.println("-----updated_list-1---");
+        /*//System.out.println("-----updated_list-1---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }*/
         
@@ -182,7 +186,25 @@ public class Main {
         for(int i= 0; i< tokens.size(); i++){
             String current = tokens.get(i);
             
-            if(current.equals("INT")){
+            if((i<tokens.size()-2) && (current.equals("ID"))&& (tokens.get(i+1).equals("(")) && (tokens.get(i+1).equals(")"))){
+            
+                Call call = new Call("");
+                //set de partes
+                call.setId(id_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "CALL");     
+                indexes.set(i, callCounter);
+                //agregar al array
+                call_arr.add(call);
+
+                callCounter++;
+                //eliminar tokens deprecados
+                tokens.remove(i+2);
+                indexes.remove(i+2);
+                tokens.remove(i+1);
+                indexes.remove(i+1);
+            
+            }else if(current.equals("INT")){
                 
                 Type_specifier type_specifier = new Type_specifier("");
                 type_specifier.setIntObj(int_obj_arr.get(indexes.get(i)));
@@ -219,10 +241,10 @@ public class Main {
             
         }
         
-        /*System.out.println("-----updated_list-2---");
+        /*//System.out.println("-----updated_list-2---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }*/
         
@@ -297,7 +319,7 @@ public class Main {
                     //agregar al array
                     param_arr.add(param);
                     //imprimir debug
-                    System.out.println(current + " is a param with index "+paramCounter);
+                    //System.out.println(current + " is a param with index "+paramCounter);
                     //aumentar contador
                     paramCounter++;
                     
@@ -322,7 +344,7 @@ public class Main {
                         //agregar al array
                         param_arr.add(param);
                         //imprimir debug
-                        System.out.println(current + " is a param with index "+paramCounter);
+                        //System.out.println(current + " is a param with index "+paramCounter);
                         //aumentar contador
                         paramCounter++;
 
@@ -339,10 +361,10 @@ public class Main {
         }
         
                 
-        /*System.out.println("-----updated_list-3---");
+        /*//System.out.println("-----updated_list-3---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }*/
         
@@ -361,7 +383,7 @@ public class Main {
                 //agregar al array
                 factor_arr.add(factor);
                 //imprimir debug
-                System.out.println(current + " is a factor with index "+factorCounter);
+                //System.out.println(current + " is a factor with index "+factorCounter);
                 //aumentar contador
                 factorCounter++;
 
@@ -391,7 +413,7 @@ public class Main {
                 //agregar al array
                 param_list_arr.add(param_list);
                 //imprimir debug
-                System.out.println(current + " is a factor with index "+paramListCounter);
+                //System.out.println(current + " is a factor with index "+paramListCounter);
                 //aumentar contador
                 paramListCounter++;
                     
@@ -421,7 +443,7 @@ public class Main {
                     //agregar al array
                     local_declarations_arr.add(local_declarations);
                     //imprimir debug
-                    System.out.println(current + " is a local_declarations with index "+localDeclarationsCounter);
+                    //System.out.println(current + " is a local_declarations with index "+localDeclarationsCounter);
                     //aumentar contador
                     localDeclarationsCounter++;
                     
@@ -432,12 +454,12 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-4---");
+        /*//System.out.println("-----updated_list-4---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
-        }
+        }*/
         
         //------------termFactor-paramList-declaration--------------------------------------//
         for(int i= 0; i< tokens.size(); i++){
@@ -455,7 +477,7 @@ public class Main {
                     //set de partes
                     term.addMulopFactor(mulop_arr.get(indexes.get(i+1)),factor_arr.get(indexes.get(i+2)));
                     //imprimir debug
-                    System.out.println(current + " is a term with index "+termCounter);
+                    //System.out.println(current + " is a term with index "+termCounter);
 
                     //eliminar tokens deprecados
                     tokens.remove(i+2);
@@ -470,7 +492,7 @@ public class Main {
                 //agregar al array
                 term_arr.add(term);
                 //imprimir debug
-                System.out.println(current + " is a term with index "+termCounter);
+                //System.out.println(current + " is a term with index "+termCounter);
                 //aumentar contador
                 termCounter++;
 
@@ -486,7 +508,7 @@ public class Main {
                 //agregar al array
                 params_arr.add(params);
                 //imprimir debug
-                System.out.println(current + " is a params with index "+paramsCounter);
+                //System.out.println(current + " is a params with index "+paramsCounter);
                 //aumentar contador
                 paramsCounter++;
 
@@ -505,7 +527,7 @@ public class Main {
                 //agregar al array
                 declaration_arr.add(declaration);
                 //imprimir debug
-                System.out.println(current + " is a declaration with index "+declarationCounter);
+                //System.out.println(current + " is a declaration with index "+declarationCounter);
                 //aumentar contador
                 declarationCounter++;
 
@@ -516,12 +538,12 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-5---");
+        /*//System.out.println("-----updated_list-5---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
-        }
+        }*/
         
         //-------------params-declarations, additive-expression--------------------------------------//
         for(int i= 0; i< tokens.size(); i++){
@@ -538,7 +560,7 @@ public class Main {
                 //agregar al array
                 params_arr.add(params);
                 //imprimir debug
-                System.out.println(current + " is a params with index "+paramsCounter);
+                //System.out.println(current + " is a params with index "+paramsCounter);
                 //aumentar contador
                 paramsCounter++;
 
@@ -557,7 +579,7 @@ public class Main {
                 //agregar al array
                 declaration_arr.add(declaration);
                 //imprimir debug
-                System.out.println(current + " is a declaration with index "+declarationCounter);
+                //System.out.println(current + " is a declaration with index "+declarationCounter);
                 //aumentar contador
                 declarationCounter++;
 
@@ -574,7 +596,7 @@ public class Main {
                     //set de partes
                     additive_expression.addAddopTerm(addop_arr.get(indexes.get(i+1)),term_arr.get(indexes.get(i+2)));
                     //imprimir debug
-                    System.out.println(current + " is an additive expression with index "+ additiveExpressionCounter);
+                    //System.out.println(current + " is an additive expression with index "+ additiveExpressionCounter);
 
                     //eliminar tokens deprecados
                     tokens.remove(i+2);
@@ -589,7 +611,7 @@ public class Main {
                 //agregar al array
                 additive_expression_arr.add(additive_expression);
                 //imprimir debug
-                System.out.println(current + " is an additive expression with index "+additiveExpressionCounter);
+                //System.out.println(current + " is an additive expression with index "+additiveExpressionCounter);
                 //aumentar contador
                 additiveExpressionCounter++;
          
@@ -598,12 +620,12 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-6---");
+        /*//System.out.println("-----updated_list-6---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
-        }
+        }*/
         
         //-------------simple expression--------------------------------------//
         for(int i= 0; i< tokens.size(); i++){
@@ -632,7 +654,7 @@ public class Main {
                 //agregar al array
                 simple_expression_arr.add(simple_expression);
                 //imprimir debug
-                System.out.println(current + " is a simple expression with index "+simpleExpressionCounter);
+                //System.out.println(current + " is a simple expression with index "+simpleExpressionCounter);
                 //aumentar contador
                 simpleExpressionCounter++;
       
@@ -641,12 +663,12 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-7---");
+        /*//System.out.println("-----updated_list-7---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
-        }
+        }*/
         
         //-------------sexpression--------------------------------------//
         for(int i= 0; i< tokens.size(); i++){
@@ -663,7 +685,7 @@ public class Main {
                 //agregar al array
                 expression_arr.add(expression);
                 //imprimir debug
-                System.out.println(current + " is an expression with index "+expressionCounter);
+                //System.out.println(current + " is an expression with index "+expressionCounter);
                 //aumentar contador
                 expressionCounter++;
       
@@ -672,12 +694,12 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-8---");
+        /*//System.out.println("-----updated_list-8---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
-        }
+        }*/
         
                 //-------------var-1--------------------------------------//
         for(int i= 0; i< tokens.size(); i++){
@@ -696,7 +718,7 @@ public class Main {
                     //agregar al array
                     var_arr.add(var);
                     //imprimir debug
-                    System.out.println(current + " is a var with index "+varCounter);
+                    //System.out.println(current + " is a var with index "+varCounter);
                     //aumentar contador
                     varCounter++;
                     //eliminar tokens deprecados
@@ -719,7 +741,7 @@ public class Main {
                     //agregar al array
                     var_arr.add(var);
                     //imprimir debug
-                    System.out.println(current + " is a var with index "+varCounter);
+                    //System.out.println(current + " is a var with index "+varCounter);
                     //aumentar contador
                     varCounter++;
                     //eliminar tokens deprecados
@@ -730,10 +752,10 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-9---");
+        //System.out.println("-----updated_list-9---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }
         
@@ -754,7 +776,7 @@ public class Main {
                     //agregar al array
                     expression_arr.add(expression);
                     //imprimir debug
-                    System.out.println(current + " is an expression with index "+expressionCounter);
+                    //System.out.println(current + " is an expression with index "+expressionCounter);
                     //aumentar contador
                     expressionCounter++;
                     //eliminar tokens deprecados
@@ -770,10 +792,10 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-10---");
+        //System.out.println("-----updated_list-10---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }
         
@@ -794,7 +816,7 @@ public class Main {
                     //agregar al array
                     var_arr.add(var);
                     //imprimir debug
-                    System.out.println(current + " is a var with index "+varCounter);
+                    //System.out.println(current + " is a var with index "+varCounter);
                     //aumentar contador
                     varCounter++;
                     //eliminar tokens deprecados
@@ -817,7 +839,7 @@ public class Main {
                     //agregar al array
                     var_arr.add(var);
                     //imprimir debug
-                    System.out.println(current + " is a var with index "+varCounter);
+                    //System.out.println(current + " is a var with index "+varCounter);
                     //aumentar contador
                     varCounter++;
                     //eliminar tokens deprecados
@@ -828,10 +850,10 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-11---");
+        //System.out.println("-----updated_list-11---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }
         
@@ -852,7 +874,7 @@ public class Main {
                     //agregar al array
                     expression_arr.add(expression);
                     //imprimir debug
-                    System.out.println(current + " is an expression with index "+expressionCounter);
+                    //System.out.println(current + " is an expression with index "+expressionCounter);
                     //aumentar contador
                     expressionCounter++;
                     //eliminar tokens deprecados
@@ -868,10 +890,10 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-12---");
+        //System.out.println("-----updated_list-12---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }
         
@@ -903,7 +925,7 @@ public class Main {
                     //agregar al array
                     arg_list_arr.add(arg_list);
                     //imprimir debug
-                    System.out.println(current + " is an arg_list with index "+argListCounter);
+                    //System.out.println(current + " is an arg_list with index "+argListCounter);
                     //aumentar contador
                     argListCounter++;
                     
@@ -915,10 +937,10 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-13---");
+        //System.out.println("-----updated_list-13---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }
         
@@ -938,7 +960,7 @@ public class Main {
                 //agregar al array
                 args_arr.add(args1);
                 //imprimir debug
-                System.out.println(current + " is an args with index "+argsCounter);
+                //System.out.println(current + " is an args with index "+argsCounter);
                 //aumentar contador
                 argsCounter++;
                 //eliminar tokens deprecados
@@ -948,10 +970,10 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-14---");
+        //System.out.println("-----updated_list-14---");
         for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }
         
@@ -972,7 +994,7 @@ public class Main {
                 //agregar al array
                 call_arr.add(call);
                 //imprimir debug
-                System.out.println(current + " is an call with index "+callCounter);
+                //System.out.println(current + " is an call with index "+callCounter);
                 //aumentar contador
                 callCounter++;
                 //eliminar tokens deprecados
@@ -989,7 +1011,698 @@ public class Main {
         }
         
                 
-        System.out.println("-----updated_list-15---");
+        //System.out.println("-----updated_list-15---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }
+        
+        //-------------factor--------------------------------------//
+        
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("EXPRESSION")){
+                
+                if((i>1)&& ((tokens.get(i-2).equals("if")) || (tokens.get(i-2).equals("while")))){
+                    //if or while
+                }else if((i>0) && (i<tokens.size()) && (tokens.get(i-1).equals("(")) && (tokens.get(i+1).equals(")"))){
+                    
+                    Factor factor = new Factor("");
+                    //set de partes
+                    factor.setExp(expression_arr.get(indexes.get(i)));
+                    //token e index set
+                    tokens.set(i, "FACTOR");     
+                    indexes.set(i, factorCounter);
+                    //agregar al array
+                    factor_arr.add(factor);
+                    //imprimir debug
+                    //System.out.println(current + " is a factor with index "+factorCounter);
+                    //aumentar contador
+                    factorCounter++;
+                    //eliminar tokens deprecados
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    tokens.remove(i-1);
+                    indexes.remove(i-1);
+                }
+                
+            }else if(current.equals("VAR")){
+                
+                if((i<tokens.size()-1) && (tokens.get(i+1).equals("="))){
+                    //var = exp
+                }else{
+                    Factor factor = new Factor("");
+                    //set de partes
+                    factor.setVar(var_arr.get(indexes.get(i)));
+                    //token e index set
+                    tokens.set(i, "FACTOR");     
+                    indexes.set(i, factorCounter);
+                    //agregar al array
+                    factor_arr.add(factor);
+                    //imprimir debug
+                    //System.out.println(current + " is a factor with index "+factorCounter);
+                    //aumentar contador
+                    factorCounter++;
+                    //eliminar tokens deprecados
+                }
+                
+            }else if(current.equals("CALL")){
+                    Factor factor = new Factor("");
+                    //set de partes
+                    factor.setCall(call_arr.get(indexes.get(i)));
+                    //token e index set
+                    tokens.set(i, "FACTOR");     
+                    indexes.set(i, factorCounter);
+                    //agregar al array
+                    factor_arr.add(factor);
+                    //imprimir debug
+                    //System.out.println(current + " is a factor with index "+factorCounter);
+                    //aumentar contador
+                    factorCounter++;
+                    //eliminar tokens deprecados
+                
+            }
+            
+        }
+        
+                
+        //System.out.println("-----updated_list-16---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }
+        
+        //------------Factor-2--------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("FACTOR")){
+                
+                Term term = new Term("");
+                //set de partes
+                term.setFactor(factor_arr.get(indexes.get(i)));
+
+
+                
+                while((tokens.get(i+1).equals("MULOP")) && (tokens.get(i+2).equals("FACTOR"))){
+                    //set de partes
+                    term.addMulopFactor(mulop_arr.get(indexes.get(i+1)),factor_arr.get(indexes.get(i+2)));
+                    //imprimir debug
+                    //System.out.println(current + " is a term with index "+termCounter);
+
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                //token e index set
+                tokens.set(i, "TERM");
+                indexes.set(i, termCounter);
+                //agregar al array
+                term_arr.add(term);
+                //imprimir debug
+                //System.out.println(current + " is a term with index "+termCounter);
+                //aumentar contador
+                termCounter++;
+
+                
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-17---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------additive-expression-2------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("TERM")){
+                
+                Additive_expression additive_expression = new Additive_expression("");
+                //set de partes
+                additive_expression.setTerm(term_arr.get(indexes.get(i)));
+               
+                while((tokens.get(i+1).equals("ADDOP")) && (tokens.get(i+2).equals("TERM"))){
+                 
+                    //set de partes
+                    additive_expression.addAddopTerm(addop_arr.get(indexes.get(i+1)),term_arr.get(indexes.get(i+2)));
+                    //imprimir debug
+                    //System.out.println(current + " is an additive expression with index "+ additiveExpressionCounter);
+
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                //token e index set
+                tokens.set(i, "ADDITIVE_EXPRESSION");
+                indexes.set(i, additiveExpressionCounter);
+                //agregar al array
+                additive_expression_arr.add(additive_expression);
+                //imprimir debug
+                //System.out.println(current + " is an additive expression with index "+additiveExpressionCounter);
+                //aumentar contador
+                additiveExpressionCounter++;
+         
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-18---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------simple expression-2------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("ADDITIVE_EXPRESSION")){
+                
+                Simple_expression simple_expression = new Simple_expression("");
+                //set de partes
+                simple_expression.setAdditiveExpression1(additive_expression_arr.get(indexes.get(i)));
+                if((tokens.get(i+1).equals("RELOP")) && (tokens.get(i+2).equals("ADDITIVE_EXPRESSION"))){
+                    simple_expression.setRelop(relop_arr.get(indexes.get(i+1)));
+                    simple_expression.setAdditiveExpression2(additive_expression_arr.get(indexes.get(i+2)));
+                    
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                
+                //token e index set
+                tokens.set(i, "SIMPLE_EXPRESSION");     
+                indexes.set(i, simpleExpressionCounter);
+                //agregar al array
+                simple_expression_arr.add(simple_expression);
+                //imprimir debug
+                //System.out.println(current + " is a simple expression with index "+simpleExpressionCounter);
+                //aumentar contador
+                simpleExpressionCounter++;
+      
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-19---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------sexpression--------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("SIMPLE_EXPRESSION")){
+                
+                Exp expression = new Exp("");
+                //set de partes
+                expression.setSimpleExpression(simple_expression_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "EXPRESSION");     
+                indexes.set(i, expressionCounter);
+                //agregar al array
+                expression_arr.add(expression);
+                //imprimir debug
+                //System.out.println(current + " is an expression with index "+expressionCounter);
+                //aumentar contador
+                expressionCounter++;
+      
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-20---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------arg-list-2-------------------------------------//
+        
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("EXPRESSION")){
+                
+                if( (i>1) && (tokens.get(i-1).equals("(")) && (tokens.get(i-2).equals("ID"))){
+                    Arg_list arg_list = new Arg_list("");
+                    //set de partes
+                    arg_list.addExp(expression_arr.get(indexes.get(i)));
+                    
+                    while((i+2<tokens.size())&&(tokens.get(i+1).equals(",")) && (tokens.get(i+2).equals("EXPRESSION"))){
+                        arg_list.addExp(expression_arr.get(indexes.get(i+2)));
+                        
+                        //eliminar tokens deprecados
+                        tokens.remove(i+2);
+                        indexes.remove(i+2);
+                        tokens.remove(i+1);
+                        indexes.remove(i+1);
+                    
+                    }
+                    //token e index set
+                    tokens.set(i, "ARG_LIST");     
+                    indexes.set(i, argListCounter);
+                    //agregar al array
+                    arg_list_arr.add(arg_list);
+                    //imprimir debug
+                    //System.out.println(current + " is an arg_list with index "+argListCounter);
+                    //aumentar contador
+                    argListCounter++;
+                    
+                
+                }
+      
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-21---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------args-2-------------------------------------//
+        
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("ARG_LIST")){
+                
+                Args args1 = new Args("");
+                //set de partes
+                args1.setArgList(arg_list_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "ARGS");     
+                indexes.set(i, argsCounter);
+                //agregar al array
+                args_arr.add(args1);
+                //imprimir debug
+                //System.out.println(current + " is an args with index "+argsCounter);
+                //aumentar contador
+                argsCounter++;
+                //eliminar tokens deprecados
+      
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-22---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------call-2-------------------------------------//
+        
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("ARGS")){
+                
+                Call call = new Call("");
+                //set de partes
+                call.setArgs(args_arr.get(indexes.get(i)));
+                call.setId(id_arr.get(indexes.get(i-2)));
+                //token e index set
+                tokens.set(i, "CALL");     
+                indexes.set(i, callCounter);
+                //agregar al array
+                call_arr.add(call);
+                //imprimir debug
+                //System.out.println(current + " is an call with index "+callCounter);
+                //aumentar contador
+                callCounter++;
+                //eliminar tokens deprecados
+                tokens.remove(i+1);
+                indexes.remove(i+1);
+                tokens.remove(i-1);
+                indexes.remove(i-1);
+                tokens.remove(i-2);
+                indexes.remove(i-2);
+                
+      
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-23---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------factor-2-------------------------------------//
+        
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("EXPRESSION")){
+                
+                if((i>1)&& ((tokens.get(i-2).equals("if")) || (tokens.get(i-2).equals("while")))){
+                    //if or while
+                }else if((i>0) && (i<tokens.size()) && (tokens.get(i-1).equals("(")) && (tokens.get(i+1).equals(")"))){
+                    
+                    Factor factor = new Factor("");
+                    //set de partes
+                    factor.setExp(expression_arr.get(indexes.get(i)));
+                    //token e index set
+                    tokens.set(i, "FACTOR");     
+                    indexes.set(i, factorCounter);
+                    //agregar al array
+                    factor_arr.add(factor);
+                    //imprimir debug
+                    //System.out.println(current + " is a factor with index "+factorCounter);
+                    //aumentar contador
+                    factorCounter++;
+                    //eliminar tokens deprecados
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    tokens.remove(i-1);
+                    indexes.remove(i-1);
+                }
+                
+            }else if(current.equals("VAR")){
+                
+                if((i<tokens.size()-1) && (tokens.get(i+1).equals("="))){
+                    //var = exp
+                }else{
+                    Factor factor = new Factor("");
+                    //set de partes
+                    factor.setVar(var_arr.get(indexes.get(i)));
+                    //token e index set
+                    tokens.set(i, "FACTOR");     
+                    indexes.set(i, factorCounter);
+                    //agregar al array
+                    factor_arr.add(factor);
+                    //imprimir debug
+                    //System.out.println(current + " is a factor with index "+factorCounter);
+                    //aumentar contador
+                    factorCounter++;
+                    //eliminar tokens deprecados
+                }
+                
+            }else if(current.equals("CALL")){
+                    Factor factor = new Factor("");
+                    //set de partes
+                    factor.setCall(call_arr.get(indexes.get(i)));
+                    //token e index set
+                    tokens.set(i, "FACTOR");     
+                    indexes.set(i, factorCounter);
+                    //agregar al array
+                    factor_arr.add(factor);
+                    //imprimir debug
+                    //System.out.println(current + " is a factor with index "+factorCounter);
+                    //aumentar contador
+                    factorCounter++;
+                    //eliminar tokens deprecados
+                
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-24---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //------------Factor-3--------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("FACTOR")){
+                
+                Term term = new Term("");
+                //set de partes
+                term.setFactor(factor_arr.get(indexes.get(i)));
+
+
+                
+                while((tokens.get(i+1).equals("MULOP")) && (tokens.get(i+2).equals("FACTOR"))){
+                    //set de partes
+                    term.addMulopFactor(mulop_arr.get(indexes.get(i+1)),factor_arr.get(indexes.get(i+2)));
+                    //imprimir debug
+                    //System.out.println(current + " is a term with index "+termCounter);
+
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                //token e index set
+                tokens.set(i, "TERM");
+                indexes.set(i, termCounter);
+                //agregar al array
+                term_arr.add(term);
+                //imprimir debug
+                //System.out.println(current + " is a term with index "+termCounter);
+                //aumentar contador
+                termCounter++;
+
+                
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-25---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------additive-expression-3------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("TERM")){
+                
+                Additive_expression additive_expression = new Additive_expression("");
+                //set de partes
+                additive_expression.setTerm(term_arr.get(indexes.get(i)));
+               
+                while((tokens.get(i+1).equals("ADDOP")) && (tokens.get(i+2).equals("TERM"))){
+                 
+                    //set de partes
+                    additive_expression.addAddopTerm(addop_arr.get(indexes.get(i+1)),term_arr.get(indexes.get(i+2)));
+                    //imprimir debug
+                    //System.out.println(current + " is an additive expression with index "+ additiveExpressionCounter);
+
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                //token e index set
+                tokens.set(i, "ADDITIVE_EXPRESSION");
+                indexes.set(i, additiveExpressionCounter);
+                //agregar al array
+                additive_expression_arr.add(additive_expression);
+                //imprimir debug
+                //System.out.println(current + " is an additive expression with index "+additiveExpressionCounter);
+                //aumentar contador
+                additiveExpressionCounter++;
+         
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-26---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------simple expression-3------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("ADDITIVE_EXPRESSION")){
+                
+                Simple_expression simple_expression = new Simple_expression("");
+                //set de partes
+                simple_expression.setAdditiveExpression1(additive_expression_arr.get(indexes.get(i)));
+                if((tokens.get(i+1).equals("RELOP")) && (tokens.get(i+2).equals("ADDITIVE_EXPRESSION"))){
+                    simple_expression.setRelop(relop_arr.get(indexes.get(i+1)));
+                    simple_expression.setAdditiveExpression2(additive_expression_arr.get(indexes.get(i+2)));
+                    
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                
+                //token e index set
+                tokens.set(i, "SIMPLE_EXPRESSION");     
+                indexes.set(i, simpleExpressionCounter);
+                //agregar al array
+                simple_expression_arr.add(simple_expression);
+                //imprimir debug
+                //System.out.println(current + " is a simple expression with index "+simpleExpressionCounter);
+                //aumentar contador
+                simpleExpressionCounter++;
+      
+            }
+            
+        }
+        
+                
+        /*//System.out.println("-----updated_list-27---");
+        for(int i= 0; i< tokens.size(); i++){
+        
+            //System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------expression-2------------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("SIMPLE_EXPRESSION")){
+                
+                Exp expression = new Exp("");
+                //set de partes
+                expression.setSimpleExpression(simple_expression_arr.get(indexes.get(i)));
+                //token e index set
+                tokens.set(i, "EXPRESSION");     
+                indexes.set(i, expressionCounter);
+                //agregar al array
+                expression_arr.add(expression);
+                //imprimir debug
+                //System.out.println(current + " is an expression with index "+expressionCounter);
+                //aumentar contador
+                expressionCounter++;
+      
+            }
+            
+        }
+        
+                
+        //System.out.println("-----updated_list-28---");
+        /*for(int i= 0; i< tokens.size(); i++){
+        
+            System.out.println(tokens.get(i)+ " " +indexes.get(i));
+        
+        }*/
+        
+        //-------------return--expressionStatement----------------------------------//
+        for(int i= 0; i< tokens.size(); i++){
+            String current = tokens.get(i);
+            
+            if(current.equals("EXPRESSION")){
+                
+                if((i>0) && (i<tokens.size()-1) && (tokens.get(i+1).equals(";"))&& (tokens.get(i-1).equals("return"))){
+                
+                    Return_statement return_statement = new Return_statement("");
+                    //set de partes
+                    return_statement.setExp(expression_arr.get(indexes.get(i)));
+                    //token e index set
+                    tokens.set(i, "RETURN_STATEMENT");     
+                    indexes.set(i, returnStatementCounter);
+                    //agregar al array
+                    return_statement_arr.add(return_statement);
+                    //imprimir debug
+                    //System.out.println(current + " is an expression with index "+expressionCounter);
+                    //aumentar contador
+                    returnStatementCounter++;
+                    
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    tokens.remove(i-1);
+                    indexes.remove(i-1);
+                
+                }else if((i<tokens.size()-1) && (tokens.get(i+1).equals(";"))){
+                
+                    
+                    Expression_statement expression_statement = new Expression_statement("");
+                    //set de partes
+                    expression_statement.setExp(expression_arr.get(indexes.get(i)));
+                    //token e index set
+                    tokens.set(i, "EXPRESSION_STATEMENT");     
+                    indexes.set(i, expressionStatementCounter);
+                    //agregar al array
+                    expression_statement_arr.add(expression_statement);
+                    //imprimir debug
+                    //System.out.println(current + " is an expression with index "+expressionCounter);
+                    //aumentar contador
+                    expressionStatementCounter++;
+                    
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                
+                }
+      
+            } else if(current.equals("return")){
+                
+                if((i<tokens.size()-1) && (tokens.get(i+1).equals(";"))){
+                
+                    Return_statement return_statement = new Return_statement("");
+                    //set de partes
+                    //token e index set
+                    tokens.set(i, "RETURN_STATEMENT");     
+                    indexes.set(i, returnStatementCounter);
+                    //agregar al array
+                    return_statement_arr.add(return_statement);
+                    //imprimir debug
+                    //System.out.println(current + " is an expression with index "+expressionCounter);
+                    //aumentar contador
+                    returnStatementCounter++;
+                    
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                
+                }
+            
+            }
+            
+        }
+        
+                
+        //System.out.println("-----updated_list-29---");
         for(int i= 0; i< tokens.size(); i++){
         
             System.out.println(tokens.get(i)+ " " +indexes.get(i));
