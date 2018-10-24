@@ -15,10 +15,10 @@ public class Statement_obj {
         this.content = content;
     }
     
-    public void SetExpressionStatement(Expression_statement expression_statement){
+    public void setExpressionStatement(Expression_statement expression_statement){
         this.expression_statement = expression_statement;
     }
-    public void SetCompundStatement(Compound_statement compound_statement){
+    public void setCompundStatement(Compound_statement compound_statement){
         this.compound_statement = compound_statement;
     }
     public void SetSelectionStatement(Selection_statement selection_statement){
