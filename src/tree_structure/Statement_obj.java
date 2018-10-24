@@ -21,7 +21,7 @@ public class Statement_obj {
     public void setCompundStatement(Compound_statement compound_statement){
         this.compound_statement = compound_statement;
     }
-    public void SetSelectionStatement(Selection_statement selection_statement){
+    public void setSelectionStatement(Selection_statement selection_statement){
         this.selection_statement = selection_statement;
     }
     public void setIterationStatement(Iteration_statement iteration_statement){

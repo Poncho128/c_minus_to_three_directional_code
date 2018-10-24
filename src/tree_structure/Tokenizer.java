@@ -21,7 +21,7 @@ public class Tokenizer {
     }
     
     public ArrayList<String> populate() throws IOException{
-        File file = new File("C:\\Users\\DANIELALEJANDROJIMEN\\Documents\\NetBeansProjects\\c_minus_to_three_directional_code\\src\\tree_structure\\input.txt");
+        File file = new File("C:\\Users\\ponch\\Documents\\NetBeansProjects\\C_minus\\c_minus_to_three_directional_code\\src\\tree_structure\\input.txt");
         Scanner input = new Scanner(file); 
         
         ArrayList<String> tokens = new ArrayList<>();

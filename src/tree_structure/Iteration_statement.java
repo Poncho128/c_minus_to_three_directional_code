@@ -6,7 +6,7 @@ import static tree_structure.Main.labelCounter;
 public class Iteration_statement {
     
     private Exp expression = null;
-    private Statement_obj statement_obj = null;
+    private Statement_list statement_list = null;
     private String content = "";
     
     public Iteration_statement(String content){
@@ -17,8 +17,8 @@ public class Iteration_statement {
         this.expression = expression;
     }
     
-    public void setStatementList(Statement_obj statement_obj){
-        this.statement_obj = statement_obj;
+    public void setStatementList(Statement_list statement_list){
+        this.statement_list = statement_list;
     }
     
     @Override
@@ -33,7 +33,7 @@ public class Iteration_statement {
         this.content += "if false t" + counter  + " goto label L" + (bufferLabelCounter+1) + "\n";
         counter++;
         
-        this.content += this.statement_obj.toString()+"\n";
+        this.content += this.statement_list.toString()+"\n";
         this.content += "goto label L" + bufferLabelCounter + "\n";
         this.content += "label L" + (bufferLabelCounter+1)  + "\n";
         return this.content;
