@@ -25,6 +25,7 @@ public class Main {
     public static int localDeclarationsCounter = 0;
     public static int termCounter = 0;
     public static int declarationCounter = 0;
+    public static int additiveExpressionCounter = 0;
     
     public static void main(String[] args) throws IOException {
         
@@ -62,6 +63,7 @@ public class Main {
          ArrayList<Local_declarations> local_declarations_arr = new ArrayList<Local_declarations>();
          ArrayList<Term> term_arr = new ArrayList<Term>();
          ArrayList<Declaration> declaration_arr = new ArrayList<Declaration>();
+         ArrayList<Additive_expression> additive_expression_arr = new ArrayList<Additive_expression>();
         
         
         //----ID-NUM-relop-addop-mulop-int-void-brackets-----------------------------//
@@ -510,7 +512,7 @@ public class Main {
         
         }
         
-        //-------------params-declarations--------------------------------------//
+        //-------------params-declarations, additive-expression--------------------------------------//
         for(int i= 0; i< tokens.size(); i++){
             String current = tokens.get(i);
             
@@ -550,15 +552,45 @@ public class Main {
 
                 //eliminar tokens deprecados
                 
+            }else if(current.equals("TERM")){
+                
+                Additive_expression additive_expression = new Additive_expression("");
+                //set de partes
+                additive_expression.setTerm(term_arr.get(indexes.get(i)));
+               
+                while((tokens.get(i+1).equals("ADDOP")) && (tokens.get(i+2).equals("TERM"))){
+                 
+                    //set de partes
+                    additive_expression.addAddopTerm(addop_arr.get(indexes.get(i+1)),term_arr.get(indexes.get(i+2)));
+                    //imprimir debug
+                    System.out.println(current + " is an additive expression with index "+ additiveExpressionCounter);
+
+                    //eliminar tokens deprecados
+                    tokens.remove(i+2);
+                    indexes.remove(i+2);
+                    tokens.remove(i+1);
+                    indexes.remove(i+1);
+                    
+                }
+                //token e index set
+                tokens.set(i, "ADDITIVE_EXPRESSION");
+                indexes.set(i, additiveExpressionCounter);
+                //agregar al array
+                additive_expression_arr.add(additive_expression);
+                //imprimir debug
+                System.out.println(current + " is an additive expression with index "+additiveExpressionCounter);
+                //aumentar contador
+                additiveExpressionCounter++;
+         
             }
             
         }
         
                 
         System.out.println("-----updated_list-6---");
-        for(int i= 0; i< var_declaration_arr.size(); i++){
+        for(int i= 0; i< tokens.size(); i++){
         
-            System.out.println(var_declaration_arr.get(i)+ " " +indexes.get(i));
+            System.out.println(tokens.get(i)+ " " +indexes.get(i));
         
         }
     }
